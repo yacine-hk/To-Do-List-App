@@ -21,8 +21,8 @@ header.style.backgroundImage = `url(img/${random})`
 // Local storage
 let LIST, id;
 
-// get item from localstorage
-let data = localStorage.getItem("ToDO");
+// get item from sessionStorage
+let data = sessionStorage.getItem("ToDO");
 
 // check if data is not empty
 if (data) {
@@ -47,7 +47,7 @@ function loadTodo(array) {
 
 // clear the local storage
 clearBtn.addEventListener("click", function () {
-  localStorage.clear();
+  sessionStorage.clear();
   location.reload();
 });
 
@@ -83,7 +83,7 @@ function addToDo(toDo, id, done, trash, time) {
 
   // list.addEventListener("click", (ev) => {
 
-  //   let jsPars = JSON.parse(localStorage.getItem("ToDO"));
+  //   let jsPars = JSON.parse(sessionStorage.getItem("ToDO"));
   //   for (let i = 0; i < jsPars.length; i++) {
   //     // get todo from local storage
   //     let a = jsPars[i].name
@@ -136,19 +136,20 @@ function addingTODO() {
   // if the input !empty
   if (toDo) {
     // check if the todo is already on the LIST
-    if (localStorage.length != 0) {
-      let jsPars = JSON.parse(localStorage.getItem("ToDO"));
+    if (sessionStorage.length != 0) {
+      let jsPars = JSON.parse(sessionStorage.getItem("ToDO"));
 
-      for (let i = 0; i < jsPars.length; i++) {
-        // get todo from local storage
-        let a = jsPars[i].name
-        // todo equal input value
-        if (toDo == a) {
-          alert("The todo is already in the list");
-          input.value = "";
-          return;
+      if (jsPars) {
+        for (let i = 0; i < jsPars.length; i++) {
+          // get todo from local storage
+          let a = jsPars[i].name
+          // todo equal input value
+          if (toDo == a) {
+            alert("The todo is already in the list");
+            input.value = "";
+            return;
+          }
         }
-
       }
     }
 
@@ -170,8 +171,8 @@ function addingTODO() {
         time: time.value
       }
     );
-    // add item to localstorage ( this code must be added where the LIST array is updated)
-    localStorage.setItem("ToDO", JSON.stringify(LIST));
+    // add item to sessionStorage ( this code must be added where the LIST array is updated)
+    sessionStorage.setItem("ToDO", JSON.stringify(LIST));
 
     // increase the id by 1
     id++;
@@ -211,6 +212,6 @@ list.addEventListener("click", (event) => {
     prompt("new")
   }
 
-  // add item to localstorage ( this code must be added where the LIST array is updated)
-  localStorage.setItem("ToDO", JSON.stringify(LIST));
+  // add item to sessionStorage ( this code must be added where the LIST array is updated)
+  sessionStorage.setItem("ToDO", JSON.stringify(LIST));
 })
