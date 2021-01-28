@@ -70,9 +70,9 @@ function addToDo(toDo, id, done, trash, time) {
   // Add new todo in the list
   const text = `<li class="item">
       <i class="fa ${DONE} co" job="complete" id="${id}"></i>
-      <p class="text ${LINE}" job="complet">${toDo}</p>
+      <p class="text ${LINE}">${toDo}</p>
       <i class="fa fa-trash-o de" job="delete" id="${id}"></i>
-      <div class="todo-time ${LINE}" job="complet"> ${time} </div>
+      <div class="todo-time ${LINE}"> ${time} </div>
                 </li>
 `;
   // postion of added todo
@@ -204,12 +204,13 @@ function removeTodo(element) {
 // targeting to todo elements
 list.addEventListener("click", (event) => {
   let element = event.target
-
-  const elementJOB = element.attributes.job.value; // complete / delete
-  if (elementJOB == "complete") completedTodo(element)
-  else if (elementJOB == "delete") removeTodo(element)
-  else if (elementJOB == "complet") {
-    prompt("new")
+  try {
+    const elementJOB = element.attributes.job.value; // complete / delete
+    if (elementJOB == "complete") completedTodo(element)
+    else if (elementJOB == "delete") removeTodo(element)
+  }
+  catch (err) {
+    return
   }
 
   // add item to sessionStorage ( this code must be added where the LIST array is updated)
