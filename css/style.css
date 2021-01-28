@@ -63,6 +63,8 @@ body {
   margin: 0;
 }
 .item {
+  display: flex;
+  align-items: center;
   width: 380px;
   height: 45px;
   min-height: 45px;
@@ -91,7 +93,6 @@ body {
   margin: 0;
   font-size: 20px;
   left: 50px;
-  top: 12px;
   background-color: #fff;
   max-width: 285px;
 }
@@ -100,7 +101,6 @@ body {
   position: absolute;
   font-size: 25px;
   right: 15px;
-  top: 10px;
 }
 .item i.de:hover {
   color: #af0000;
@@ -110,7 +110,6 @@ body {
 .todo-time {
   position: absolute;
   left: 280px;
-  top: 10px;
   color: #4162f6;
   font-size: 15px;
   font-weight: bold;
